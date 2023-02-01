@@ -2,7 +2,9 @@
   (:require [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
             [io.pedestal.http.body-params :as body-params]
-            [ring.util.response :as ring-resp]))
+            [io.pedestal.http.jetty.util :as jetty-util]
+            [ring.util.response :as ring-resp])
+  (:import (org.eclipse.jetty.server.handler.gzip GzipHandler)))
 
 (defn about-page
   [request]
@@ -79,4 +81,8 @@
                                         ;; Alternatively, You can specify your own Jetty HTTPConfiguration
                                         ;; via the `:io.pedestal.http.jetty/http-configuration` container option.
                                         ;:io.pedestal.http.jetty/http-configuration (org.eclipse.jetty.server.HttpConfiguration.)
+                                        :context-configurator (fn [c]
+                                                                (let [gzip-handler (GzipHandler.)]
+                                                                  (.setGzipHandler c gzip-handler)
+                                                                  (.addIncludedMethods gzip-handler (into-array ["GET" "POST"]))))
                                         }})
