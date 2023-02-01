@@ -15,7 +15,8 @@
 
 (def service
   (merge
-    (lp/default-service hello-schema {:port 8080})
+    (lp/default-service hello-schema {:api-path "/graphql"
+                                      :port 8080})
     {::http/container-options {:h2c? true
                                :h2? false
                                ;:keystore "test/hp/keystore.jks"
