@@ -10,7 +10,9 @@
 
                  [io.pedestal/pedestal.jetty "0.5.11-beta-1"]
 
+                 [com.walmartlabs/lacinia-pedestal "1.1"]
                  [ch.qos.logback/logback-classic "1.2.10" :exclusions [org.slf4j/slf4j-api]]
+                 [io.aviso/pretty "1.3"]
                  [org.slf4j/jul-to-slf4j "1.7.35"]
                  [org.slf4j/jcl-over-slf4j "1.7.35"]
                  [org.slf4j/log4j-over-slf4j "1.7.35"]]
