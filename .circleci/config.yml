@@ -1,0 +1,13 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/clojure:1.11.1
+    steps:
+      - checkout
+      - run:
+          name: "Build uberjar"
+          command: |
+            lein uberjar
+      - store_artifacts:
+          path: target/iamedu-backend-0.0.1-SNAPSHOT-standalone.jar
