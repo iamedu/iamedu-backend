@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: cimg/clojure:1.11.1
-        auth:
-          username: $TF_VAR_do_token
-          password: $TF_VAR_do_token
     steps:
       - checkout
       - run:
@@ -21,6 +18,7 @@ jobs:
       - run:
           name: "Deploy docker image"
           command: |
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin registry.digitalocean.com
             docker image tag iamedu-backend registry.digitalocean.com/iamedu-registry/website/backend:latest
             docker image push registry.digitalocean.com/iamedu-registry/website/backend:latest
       - store_artifacts:
