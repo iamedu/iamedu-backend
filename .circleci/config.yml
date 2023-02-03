@@ -9,6 +9,8 @@ jobs:
           name: "Build uberjar"
           command: |
             lein uberjar
+      - setup_remote_docker:
+          version: 20.10.22
       - run:
           name: "Build docker image"
           command: |
