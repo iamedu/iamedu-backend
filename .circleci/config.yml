@@ -9,5 +9,9 @@ jobs:
           name: "Build uberjar"
           command: |
             lein uberjar
+      - run:
+          name: "Build docker image"
+          command: |
+            docker build -t iamedu-backend .
       - store_artifacts:
           path: target/iamedu-backend-0.0.1-SNAPSHOT-standalone.jar
