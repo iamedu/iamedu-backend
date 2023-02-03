@@ -15,5 +15,9 @@ jobs:
           name: "Build docker image"
           command: |
             docker build -t iamedu-backend .
+            docker login -u $TF_VAR_do_token -p $TF_VAR_do_token registry.digitalocean.com
+            docker image tag iamedu-backend registry.digitalocean.com/iamedu-registry/website/backend:latest
+            docker image push registry.digitalocean.com/iamedu-registry/website/backend:latest
       - store_artifacts:
           path: target/iamedu-backend-0.0.1-SNAPSHOT-standalone.jar
+
