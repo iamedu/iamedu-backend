@@ -16,6 +16,7 @@
 (def service
   (merge
     (lp/default-service hello-schema {:api-path "/graphql"
+                                      :host "0.0.0.0"
                                       :port 8080})
     {::http/container-options {:h2c? true
                                :h2? false
